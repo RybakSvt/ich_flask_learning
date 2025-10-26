@@ -1,2 +1,16 @@
-# ich_flask_learning
-Homework and projects for Python Advanced (Backend Development with Flask) course
+# Flask Backend Learning
+
+Монорепозиторий для домашних заданий по курсу Python Advanced (Backend-разработка на Flask).
+
+## Структура проекта
+
+-  
+-  
+-  
+-  
+
+## Как использовать
+
+1. Клонируйте репозиторий  
+2. Установите зависимости: `pip install -r requirements.txt`  
+3. Для запуска конкретного урока смотрите `README` в папке урока

@@ -22,18 +22,18 @@
 # Проверка, что если пользователь указывает, что он занят (is_employed = true), его возраст должен быть от 18 до 65 лет.
 #
 # # Пример JSON данных для регистрации пользователя
-#
-# json_input = """{
-#     "name": "John Doe",
-#     "age": 70,
-#     "email": "john.doe@example.com",
-#     "is_employed": true,
-#     "address": {
-#         "city": "New York",
-#         "street": "5th Avenue",
-#         "house_number": 123
-#     }
-# }"""
+
+json_input = """{
+    "name": "John Doe",
+    "age": 70,
+    "email": "john.doe@example.com",
+    "is_employed": true,
+    "address": {
+        "city": "New York",
+        "street": "5th Avenue",
+        "house_number": 123
+    }
+}"""
 
 
 from pydantic import (
@@ -87,18 +87,25 @@ class User(BaseConfigModel):
                 raise ValueError('Для работы возраст должен быть от 18 до 65 лет')
         return value
 
+try:
+    user = User.model_validate_json(json_input)
+    print(user.model_dump_json(indent=4))
 
-# Ошибка: поле street содержит меньше 3x символов
-json_input = """{
-    "name": "Charles",
-    "age": 40,
-    "email": "charles@example.com",
-    "is_employed": true,
-    "address": {
-        "street": "St",
-        "hause_number": 11
-    }
-}"""
+except ValidationError as err:
+    print(f"Validation error: {err}")
+
+
+# # Ошибка: поле street содержит меньше 3x символов
+# json_input = """{
+#     "name": "Charles",
+#     "age": 40,
+#     "email": "charles@example.com",
+#     "is_employed": true,
+#     "address": {
+#         "street": "St",
+#         "hause_number": 11
+#     }
+# }"""
 
 
 # # Ошибка: отрицательное значение номера дома
@@ -220,15 +227,6 @@ json_input = """{
 #         "hause_number": 45
 #     }
 # }"""
-
-
-
-try:
-    user = User.model_validate_json(json_input)
-    print(user.model_dump_json(indent=4))
-
-except ValidationError as err:
-    print(f"Validation error: {err}")
 
 
 

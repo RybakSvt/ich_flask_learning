@@ -1,0 +1,3 @@
+[submodule "hw5"]
+	path = hw5
+	url = https://github.com/RybakSvt/flask250425.git
